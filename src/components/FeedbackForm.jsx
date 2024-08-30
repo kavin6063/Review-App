@@ -67,7 +67,7 @@ const FeedbackForm = () => {
     <div className="flex flex-row items-center justify-center mt-8">
       <Card>
         <form onSubmit={handleSubmit}>
-          <h3 className="font-bold text-[#0c4a6e] text-xl">Add your reviews</h3>
+          <h3 className="font-bold text-[#0c4a6e] dark:text-[#92b1e4] text-xl">Add your reviews</h3>
           <div className="flex flex-row gap-3 mt-8">
             <input
               type="text"
