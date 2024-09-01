@@ -19,11 +19,11 @@ const FeedbackItem = ( {item} ) => {
             {item.text}
           </div>
             <div className="flex flex-row gap-7">
-                <button className="edit" onClick={() => editFeedback(item)}>
-                    <MdModeEditOutline color="orange" size={"23px"}/>
+                <button className="edit p-2 flex items-center justify-end bg-white dark:bg-slate-900 shadow-custom-light rounded-xl" onClick={() => editFeedback(item)}>
+                    <MdModeEditOutline className="text-[#bb3e0d] hover:text-[#fa5818]"  size={"23px"}/>
                 </button>
-                <button className="delete" onClick={() => deleteFeedback(item.id)}>
-                    <FaRegTrashAlt color="red" size={"22px"}/>
+                <button className="delete p-2 flex items-center justify-end bg-white dark:bg-slate-900 shadow-custom-light rounded-xl" onClick={() => deleteFeedback(item.id)}>
+                    <FaRegTrashAlt className="text-[#a81b1b] hover:text-[#ec1c1c] " size={"22px"}/>
                 </button>
 
             </div>
