@@ -71,11 +71,32 @@ export const FeedbackProvider = ({children}) => {
     setFeedback(feedback.map((item) => (item.id === id ? { ...item, ...data } : item)));
   };
 
+
+  const [itemToDelete, setItemToDelete] = useState(null); 
+  const [showModal, setShowModal] = useState(false);
+
   const deleteFeedback = async (id) => {
-    if (window.confirm("Are you sure?")) {
-      await fetch(`http://localhost:4000/posts/${id}`, { method: "DELETE" });
-      setFeedback(feedback.filter((item) => item.id !== id));
+    await fetch(`http://localhost:4000/posts/${id}`, { method: "DELETE" });
+    setFeedback(feedback.filter((item) => item.id !== id));
+  };
+
+  const handleDeleteClick = (item) => {
+    setItemToDelete(item); // Set the item to be deleted
+    setShowModal(true); // Open the modal
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false); // Close the modal
+    setItemToDelete(null); // Clear the item to be deleted
+  };
+
+  const handleConfirmDelete = async () => {
+    if (itemToDelete) {
+      await deleteFeedback(itemToDelete.id); // Delete the feedback with the stored ID
+      setItemToDelete(null); // Clear the item after deletion
     }
+    setShowModal(false); // Close the modal
+    console.log("Feedback deleted");
   };
 
     return <FeedbackContext.Provider value={{
@@ -84,7 +105,11 @@ export const FeedbackProvider = ({children}) => {
         deleteFeedback,
         addFeedback,
         updateFeedback,
-        editFeedback
+        editFeedback,
+        showModal,
+        handleDeleteClick,
+        handleCloseModal,handleConfirmDelete
+
     }}>
         { children }
     </FeedbackContext.Provider>

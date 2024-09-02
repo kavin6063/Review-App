@@ -2,15 +2,15 @@ import React from 'react'
 import FeedbackItem from './FeedbackItem'
 
 import FeedbackContext from '../context/FeedbackContext'
-
+import DeleteConfirmationModal from './shared/DeleteConfirmationModal'
 import { useContext } from 'react'
 
 
-const FeedbackList = ({ handleDelete }) => {
+const FeedbackList = () => {
 
 
 
-  const {feedback} = useContext(FeedbackContext);
+  const {feedback,showModal,handleCloseModal,handleConfirmDelete} = useContext(FeedbackContext);
 
 
   if(feedback.length === 0){
@@ -26,7 +26,13 @@ const FeedbackList = ({ handleDelete }) => {
                 <FeedbackItem key={item.id} item={item}/>
             ))
         }
+        <DeleteConfirmationModal
+        show={showModal}
+        onClose={handleCloseModal}
+        onConfirm={handleConfirmDelete}
+      />
     </div>
+    
   )
 }
 
