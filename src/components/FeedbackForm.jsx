@@ -73,7 +73,7 @@ const FeedbackForm = () => {
               type="text"
               value={text}
               onChange={handleTextChange}
-              className="px-3 py-3 text-lg w-full font-bold rounded-lg border focus:outline focus:outline-2 focus:outline-offset-2 bg-[#ffffff] text-[#3d3d3d] focus:outline-[#5094DE] border-[#5094DE]"
+              className="px-3 py-3 text-lg w-full font-bold rounded-lg border focus:outline focus:outline-2 focus:outline-offset-2 bg-[#ffffff] dark:bg-gray-800 text-[#3d3d3d] dark:text-white focus:outline-[#5094DE] border-[#5094DE]"
               placeholder="Write your review"
             />
             <Button isDisabled={btnDisable} version="primary" type="submit">
