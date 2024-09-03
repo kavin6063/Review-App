@@ -2,7 +2,7 @@ import React from 'react'
 import FeedbackItem from './FeedbackItem'
 
 import FeedbackContext from '../context/FeedbackContext'
-import DeleteConfirmationModal from './shared/DeleteConfirmationModal'
+import ConfirmationModal from './shared/ConfirmationModal'
 import { useContext } from 'react'
 
 
@@ -26,7 +26,9 @@ const FeedbackList = () => {
                 <FeedbackItem key={item.id} item={item}/>
             ))
         }
-        <DeleteConfirmationModal
+        <ConfirmationModal
+        title = {"Are You Sure?"}
+        subText = {"Do you want to delete the feedback ?"}
         show={showModal}
         onClose={handleCloseModal}
         onConfirm={handleConfirmDelete}

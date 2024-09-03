@@ -18,5 +18,5 @@ const Alert = ({version , message , actionMessage}) => {
 </div>
   )
 }
-// #0f766e
+
 export default Alert

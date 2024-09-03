@@ -1,11 +1,7 @@
 
 import { createContext, useEffect, useState } from "react";
 
-import {v4 as uuidv4} from "uuid";
-
-
 const FeedbackContext = createContext();
-
 
 
 export const FeedbackProvider = ({children}) => {
@@ -13,11 +9,27 @@ export const FeedbackProvider = ({children}) => {
 
     const [feedback, setFeedback] = useState([]);
 
+    const [feedbackEdit, setFeedbackEdit] = useState({
+      item:{},
+      edit:false
+    })
+
+    const editFeedback = (item) => {
+      setFeedbackEdit({
+        item:item,
+        edit:true
+      })
+    }
+    const [itemToDelete, setItemToDelete] = useState(null); 
+
+    const [showModal, setShowModal] = useState(false);
+
     useEffect(() => {
       fetchFeedback();
     }, []);
 
-    // Fetch Feedback
+    // CRUD
+
     const fetchFeedback = async () => {
       try {
         const response = await fetch("http://localhost:4000/posts");
@@ -29,14 +41,9 @@ export const FeedbackProvider = ({children}) => {
     };
 
 
-    const [feedbackEdit, setFeedbackEdit] = useState({
-      item:{},
-      edit:false
-    })
 
-    const addFeedback = async (newFeedback) => {
-      newFeedback.id = uuidv4();
-  
+
+   const addFeedback = async (newFeedback) => {
       const response = await fetch("http://localhost:4000/posts", {
         method: "POST",
         headers: {
@@ -50,12 +57,7 @@ export const FeedbackProvider = ({children}) => {
       setFeedback([data, ...feedback]);
     };
 
-    const editFeedback = (item) => {
-      setFeedbackEdit({
-        item:item,
-        edit:true
-      })
-    }
+
 
   const updateFeedback = async (id, updItem) => {
     const response = await fetch(`http://localhost:4000/posts/${id}`, {
@@ -72,13 +74,14 @@ export const FeedbackProvider = ({children}) => {
   };
 
 
-  const [itemToDelete, setItemToDelete] = useState(null); 
-  const [showModal, setShowModal] = useState(false);
+
 
   const deleteFeedback = async (id) => {
     await fetch(`http://localhost:4000/posts/${id}`, { method: "DELETE" });
     setFeedback(feedback.filter((item) => item.id !== id));
   };
+
+  // handling confirm modal
 
   const handleDeleteClick = (item) => {
     setItemToDelete(item); // Set the item to be deleted

@@ -1,13 +1,13 @@
 import React from "react";
 
-const DeleteConfirmationModal = ({ show, onClose, onConfirm }) => {
+const ConfirmationModal = ({ show, onClose, onConfirm , title , subText}) => {
   if (!show) return null;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-        <h2 className="text-lg font-bold mb-4">Are you sure?</h2>
-        <p className="mb-6">Do you really want to delete this feedback?</p>
+        <h2 className="text-lg font-bold mb-4">{title}</h2>
+        <p className="mb-6">{subText}</p>
         <div className="flex justify-end">
           <button
             onClick={onClose}
@@ -27,4 +27,4 @@ const DeleteConfirmationModal = ({ show, onClose, onConfirm }) => {
   );
 };
 
-export default DeleteConfirmationModal;
+export default ConfirmationModal;
